@@ -2,7 +2,10 @@
 
 // Объявляем переменные
 let dots = document.querySelectorAll('.slider__dots__items'),
-    imagesContainer = document.querySelector('.slider__images');
+    imagesContainer = document.querySelector('.slider__images'),
+    overlay = document.querySelector('.overlay'),
+    modalImages = document.querySelector('.modal__images-wrapper'),
+    modalContainer = document.querySelector('.modal')
 
 // Слайдер
 function sliderFun(e) {
@@ -31,4 +34,33 @@ function sliderFun(e) {
             imagesContainer.style.left = '-300%';
             break;
     }
+}
+
+// Модальное окно
+function modal() {
+    // Темный экран на задний фон
+
+    if(overlay.classList.contains('active') == false) {
+        overlay.style.opacity = '0.5';
+        overlay.setAttribute('onclick', 'modal()');
+    } else {
+        overlay.style.opacity = '0';
+        overlay.removeAttribute('onclick', 'modal()');
+    }
+
+    overlay.classList.toggle('active');
+
+    // Показываем картинку
+
+    let left = getComputedStyle(imagesContainer).left;
+
+    modalImages.style.left = String(parseInt(left)/800*1200) + 'px';
+
+    // Анимация появления картинки
+    if(modalContainer.classList.contains('active') == false) {
+        modalContainer.style.opacity = '1';
+    } else {
+        modalContainer.style.opacity = '0';
+    }
+    modalContainer.classList.toggle('active');
 }

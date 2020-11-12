@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Slider</title>
     <link rel="stylesheet" href="css/style.css">
+    <script src="https://kit.fontawesome.com/f0a6a8f396.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="slider">
@@ -20,7 +21,19 @@
             <span class="slider__dots__items" onclick="sliderFun('3')"></span>
             <span class="slider__dots__items" onclick="sliderFun('4')"></span>
         </div>
+        <div class="slider__full" onclick="modal()"><i class="fas fa-expand-alt"></i></div>
     </div>
+
+    <div class="modal">
+        <div class="modal__images-wrapper">
+            <img src="images/slider1.png" alt="">
+            <img src="images/slider2.png" alt="">
+            <img src="images/slider3.png" alt="">
+            <img src="images/slider4.png" alt="">
+        </div>
+        <div class="slider__full" onclick="modal()"><i class="fas fa-compress-alt"></i></div>
+    </div>
+    <div class="overlay"></div>
 
     <script src="main.js"></script>
 </body>

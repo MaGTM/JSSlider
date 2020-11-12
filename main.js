@@ -1,11 +1,16 @@
 "use strict"
 
+
 // Объявляем переменные
 let dots = document.querySelectorAll('.slider__dots__items'),
     imagesContainer = document.querySelector('.slider__images'),
     overlay = document.querySelector('.overlay'),
     modalImages = document.querySelector('.modal__images-wrapper'),
     modalContainer = document.querySelector('.modal')
+
+// Константы
+const sliderImagesWidth = getComputedStyle(imagesContainer).width,
+      modalImagesWidth = getComputedStyle(modalContainer).width;
 
 // Слайдер
 function sliderFun(e) {
@@ -16,24 +21,9 @@ function sliderFun(e) {
     });
 
     // Картинки делают вжух-вжух и к определенному элементу добавляется класс active
-    switch(e) {
-        case '1': 
-            dots[0].classList.add('active');
-            imagesContainer.style.left = '0%';
-            break;
-        case '2':
-            dots[1].classList.add('active');
-            imagesContainer.style.left = '-100%';
-            break;
-        case '3':
-            dots[2].classList.add('active');
-            imagesContainer.style.left = '-200%';
-            break;
-        case '4':
-            dots[3].classList.add('active');
-            imagesContainer.style.left = '-300%';
-            break;
-    }
+    imagesContainer.style.left = '-' + String(e * parseInt(sliderImagesWidth)) + 'px';
+    dots[e].classList.add('active');
+    
 }
 
 // Модальное окно
@@ -53,8 +43,8 @@ function modal() {
     // Показываем картинку
 
     let left = getComputedStyle(imagesContainer).left;
-
-    modalImages.style.left = String(parseInt(left)/800*1200) + 'px';
+    
+    modalImages.style.left = String((parseInt(left) / parseInt(sliderImagesWidth)) * parseInt(modalImagesWidth)) + 'px';
 
     // Анимация появления картинки
     if(modalContainer.classList.contains('active') == false) {
